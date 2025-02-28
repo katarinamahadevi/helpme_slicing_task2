@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:helpme_slicing_task2/home_page.dart';
 import 'package:helpme_slicing_task2/page_kontak.dart';
 import 'package:helpme_slicing_task2/page_module.dart';
 import 'package:helpme_slicing_task2/page_obrolan.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: PageLayanan(),
-    
-  ));
+  runApp(
+    const MaterialApp(debugShowCheckedModeBanner: false, home: HomePage()),
+  );
 }
 
 class PageLayanan extends StatelessWidget {
@@ -22,26 +22,23 @@ class PageLayanan extends StatelessWidget {
     {"name": "SAR/BASARNAS", "number": "115"},
     {"name": "Posko Kewaspadaan Nasional", "number": "122"},
     {"name": "Posko Bencana Alam", "number": "129"},
-    {"name": "PLN", "number": "123"},
+    {"name": "Hotline Covid", "number": "119"},
+    {"name": "PMI", "number": "021 7992325"},
+    {"name": "Informasi Keracunan BPOM", "number": "1500-533"},
+    {"name": "Panggilan Darurat", "number": "112"},
   ];
-  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-      ),
+
       body: Column(
         children: [
-          const SizedBox(height: 30),
+          const SizedBox(height: 60),
           const Text(
             "Sedang dalam kondisi darurat?",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 5),
           const Text(
@@ -50,46 +47,64 @@ class PageLayanan extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           Center(
-            child: GestureDetector(
-              onTap: () {
-                // Aksi ketika tombol darurat ditekan
-              },
-              child: Container(
-                padding: const EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  shape: BoxShape.circle,
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 10,
-                      spreadRadius: 2,
-                    ),
-                  ],
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  width: 120,
+                  height: 120,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        blurRadius: 10,
+                        spreadRadius: 2,
+                      ),
+                    ],
+                  ),
                 ),
-                child: const Icon(Icons.touch_app, color: Colors.white, size: 50),
-                
-              ),
+                GestureDetector(
+                  onTap: () => print("Tombol darurat ditekan!"),
+                  child: Container(
+                    width:
+                        80, // Lebih kecil dari background putih agar terlihat
+                    height: 80,
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.touch_app,
+                      color: Colors.white,
+                      size: 50,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
+
           const SizedBox(height: 30),
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 "Layanan Darurat Indonesia",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 5),
           Expanded(
             child: ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.only(
+                left: 30,
+                right: 30,
+                bottom: 40,
+              ), // Tambahkan bottom padding
               itemCount: emergencyServices.length,
               itemBuilder: (context, index) {
                 final service = emergencyServices[index];
@@ -100,17 +115,19 @@ class PageLayanan extends StatelessWidget {
               },
             ),
           ),
-          
         ],
-        
-        
       ),
-       bottomNavigationBar: const CustomBottomNavBar(), //Navbar Home
+      bottomNavigationBar: const CustomBottomNavBar(), //Navbar Home
       floatingActionButton: SizedBox(
         width: 60,
         height: 60,
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const HomePage()),
+            );
+          },
           backgroundColor: Colors.white,
           elevation: 10,
           shape: const CircleBorder(
@@ -124,7 +141,6 @@ class PageLayanan extends StatelessWidget {
   }
 }
 
-
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({super.key});
 
@@ -135,11 +151,29 @@ class CustomBottomNavBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: const [
-          BottomNavItem(icon: Icons.menu_book, label: "Modul", page: PageModule(),),
-          BottomNavItem(icon: Icons.contacts, label: "Kontak", page: PageKontak()),
-          SizedBox(width: 50), // Untuk memberikan ruang bagi FloatingActionButton
-          BottomNavItem(icon: Icons.support_agent, label: "Layanan", page: PageLayanan(),),
-          BottomNavItem(icon: Icons.chat, label: "Obrolan", page: PageObrolan(),),
+          BottomNavItem(
+            icon: Icons.menu_book,
+            label: "Modul",
+            page: PageModule(),
+          ),
+          BottomNavItem(
+            icon: Icons.contacts,
+            label: "Kontak",
+            page: PageKontak(),
+          ),
+          SizedBox(
+            width: 50,
+          ), // Untuk memberikan ruang bagi FloatingActionButton
+          BottomNavItem(
+            icon: Icons.support_agent,
+            label: "Layanan",
+            page: PageLayanan(),
+          ),
+          BottomNavItem(
+            icon: Icons.chat,
+            label: "Obrolan",
+            page: PageObrolan(),
+          ),
         ],
       ),
     );
@@ -151,22 +185,28 @@ class BottomNavItem extends StatelessWidget {
   final String label;
   final Widget page;
 
-  const BottomNavItem({required this.icon, required this.label, required this.page, super.key});
+  const BottomNavItem({
+    required this.icon,
+    required this.label,
+    required this.page,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => page),
-        );
+        Navigator.push(context, MaterialPageRoute(builder: (context) => page));
       },
+
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, color: Colors.white, size: 30),
-          Text(label, style: const TextStyle(color: Colors.white, fontSize: 12)),
+          Text(
+            label,
+            style: const TextStyle(color: Colors.white, fontSize: 12),
+          ),
         ],
       ),
     );
@@ -190,21 +230,36 @@ class EmergencyServiceList extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.red,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(15),
         ),
         child: ListTile(
           title: Text(
             "$name = $number",
-            style: const TextStyle(color: Colors.white, fontSize: 16),
+            style: const TextStyle(color: Colors.white, fontSize: 14),
           ),
           trailing: IconButton(
+            padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
             icon: const Icon(Icons.call, color: Colors.white),
             onPressed: () {
-              // Aksi panggilan ke nomor darurat
+              _makePhoneCall(sanitizedNumber(number));
             },
           ),
         ),
       ),
     );
+  }
+
+  void _makePhoneCall(String number) async {
+    final Uri phoneUri = Uri.parse("tel:$number");
+
+    if (await canLaunchUrl(phoneUri)) {
+      await launchUrl(phoneUri);
+    } else {
+      print("Tidak dapat membuka aplikasi telepon.");
+    }
+  }
+
+  String sanitizedNumber(String number) {
+    return number.split(" atau ")[0]; // Ambil angka pertama sebelum "atau"
   }
 }

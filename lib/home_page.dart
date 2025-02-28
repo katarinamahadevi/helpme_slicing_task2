@@ -20,19 +20,19 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0), // Tambahkan padding di kiri & kanan
+              padding: const EdgeInsets.symmetric(horizontal: 10.0,), // padding di kiri & kanan
               child: Column(
                 children: const [
-                  EmergencyButtonSection(),
+                  EmergencyButtonSection(), //button emergency
                   SizedBox(height: 20),
-                  EmergencyServicesSection(),
+                  EmergencyServicesSection(), //card service
                 ],
               ),
             ),
           ],
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(), //Navbar Home
+      bottomNavigationBar: const CustomBottomNavBar(), //navbar home
       floatingActionButton: SizedBox(
         width: 60,
         height: 60,

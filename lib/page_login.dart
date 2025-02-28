@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:helpme_slicing_task2/home_page.dart';
-import 'page_register.dart'; // Import halaman pendaftaran
+import 'page_register.dart'; //wajib kalo mau pindah2 page
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -16,7 +16,7 @@ class LoginScreen extends StatelessWidget {
           children: [
             Image.asset('assets/logo_onboarding.png', width: 150),
             const SizedBox(height: 20),
-            const Text(
+            const Text( //teks helpme
               'HelpMe',
               style: TextStyle(
                 fontSize: 50,
@@ -33,8 +33,8 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const Align(
-              alignment: Alignment.centerLeft,
+            const Align( //isian textfield notelp
+              alignment: Alignment.centerLeft, // 
               child: Text('Nomor Telepon', style: TextStyle(fontSize: 16)),
             ),
             const SizedBox(height: 8),
@@ -49,7 +49,7 @@ class LoginScreen extends StatelessWidget {
                       const SizedBox(width: 8),
                       const Text('+62'),
                       const SizedBox(width: 10),
-                      Container(
+                      Container( //garis disebelah +62
                         width: 2,
                         height: 32,
                         color: Colors.black54,
@@ -60,7 +60,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 filled: true,
                 fillColor: Colors.grey[300],
-                border: OutlineInputBorder(
+                border: OutlineInputBorder( //border input
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none,
                 ),
@@ -99,9 +99,7 @@ class LoginScreen extends StatelessWidget {
                 TextButton(
                   child: const Text('Daftar', style: TextStyle(color: Colors.red)),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const PageRegister()),
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const PageRegister()), //pindah halaman register
                     );
                   },
                 ),
@@ -113,7 +111,7 @@ class LoginScreen extends StatelessWidget {
                 // Navigasi ke HomePage setelah tombol "Daftar" ditekan
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const HomePage()),
+                  MaterialPageRoute(builder: (context) => const HomePage()), //pindah halaman onpage
                 );
               },
               style: ElevatedButton.styleFrom(

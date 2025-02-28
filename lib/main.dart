@@ -32,7 +32,7 @@ class OnboardingScreen extends StatelessWidget {
             child: Column(
               children: [
                 Image.asset(
-                  'assets/logo_onboarding.png', // Ganti dengan path logo kamu
+                  'assets/logo_onboarding.png', //Logo
                   width: 150,
                 ),
                 const SizedBox(height: 20),
@@ -66,11 +66,11 @@ class OnboardingScreen extends StatelessWidget {
           const SizedBox(height: 120), // Jarak fleksibel antara teks dan tombol
           Padding(
             padding: const EdgeInsets.only(bottom: 120),
-            child: ElevatedButton(
+            child: ElevatedButton( //button mulai
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  MaterialPageRoute(builder: (context) => const LoginScreen()), //button pindah ke halaman login
                 );
               },
               style: ElevatedButton.styleFrom(
@@ -78,7 +78,7 @@ class OnboardingScreen extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 15), 
               ),
               child: const Text(
                 'Mulai !',
