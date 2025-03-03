@@ -30,7 +30,7 @@ class DetailModuleScreen extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                // Tombol Back
+                // Button back
                 Positioned(
                   top: 40,
                   left: 16,
@@ -51,7 +51,7 @@ class DetailModuleScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Judul dengan background merah
+                  // Judul container merah
                   Container(
                     padding: EdgeInsets.fromLTRB(40,10,40,10), //mengatur container judul
                     decoration: BoxDecoration(
