@@ -4,6 +4,7 @@ import 'package:helpme_slicing_task2/page_layanan.dart';
 import 'package:helpme_slicing_task2/page_module.dart';
 import 'package:helpme_slicing_task2/page_obrolan.dart';
 
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -233,8 +234,8 @@ class CustomBottomNavBar extends StatelessWidget {
       color: Colors.red,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: const [
-          BottomNavItem(icon: Icons.menu_book, label: "Modul", page: PageModule(),),
+        children:  [
+          BottomNavItem(icon: Icons.menu_book, label: "Modul", page: ModulePage(),),
           BottomNavItem(icon: Icons.contacts, label: "Kontak", page: PageKontak()),
           SizedBox(width: 50), // Untuk memberikan ruang bagi FloatingActionButton
           BottomNavItem(icon: Icons.support_agent, label: "Layanan", page: PageLayanan(),),

@@ -161,5 +161,3 @@ class PageRegister extends StatelessWidget {
   }
 }
 
-// Halaman HomePage yang menjadi tujuan navigasi
-

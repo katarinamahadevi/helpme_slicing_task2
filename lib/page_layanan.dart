@@ -150,11 +150,11 @@ class CustomBottomNavBar extends StatelessWidget {
       color: Colors.red,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: const [
+        children:  [
           BottomNavItem(
             icon: Icons.menu_book,
             label: "Modul",
-            page: PageModule(),
+            page: ModulePage(),
           ),
           BottomNavItem(
             icon: Icons.contacts,
