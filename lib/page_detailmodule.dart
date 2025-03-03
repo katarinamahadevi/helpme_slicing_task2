@@ -14,10 +14,10 @@ class DetailModuleScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Stack untuk gambar utama + tombol back
+            // stack untuk gambar utama + tombol back
             Stack(
               children: [
-                // Gambar utama sebagai header penuh
+                // gambar utama sebagai header penuh
                 ClipRRect(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(16),
