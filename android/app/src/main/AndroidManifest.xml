@@ -1,4 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:label="helpme_slicing_task2"
         android:name="${applicationName}"
@@ -43,5 +47,4 @@
         </intent>
     </queries>
 </manifest>
-<uses-permission android:name="android.permission.CALL_PHONE"/>
 

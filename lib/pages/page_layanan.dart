@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:helpme_slicing_task2/home_page.dart';
-import 'package:helpme_slicing_task2/page_kontak.dart';
-import 'package:helpme_slicing_task2/page_module.dart';
-import 'package:helpme_slicing_task2/page_obrolan.dart';
+import 'package:helpme_slicing_task2/widgets/navbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(
-    const MaterialApp(debugShowCheckedModeBanner: false, home: HomePage()),
+    const MaterialApp(debugShowCheckedModeBanner: false,)
   );
 }
 
@@ -117,98 +114,9 @@ class PageLayanan extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: const CustomBottomNavBar(), //Navbar Home
-      floatingActionButton: SizedBox(
-        width: 60,
-        height: 60,
-        child: FloatingActionButton(
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const HomePage()),
-            );
-          },
-          backgroundColor: Colors.white,
-          elevation: 10,
-          shape: const CircleBorder(
-            side: BorderSide(color: Colors.red, width: 2.0),
-          ),
-          child: const Icon(Icons.home, color: Colors.red, size: 40),
-        ),
-      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-    );
-  }
-}
-
-class CustomBottomNavBar extends StatelessWidget {
-  const CustomBottomNavBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BottomAppBar(
-      color: Colors.red,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children:  [
-          BottomNavItem(
-            icon: Icons.menu_book,
-            label: "Modul",
-            page: ModulePage(),
-          ),
-          BottomNavItem(
-            icon: Icons.contacts,
-            label: "Kontak",
-            page: PageKontak(),
-          ),
-          SizedBox(
-            width: 50,
-          ), // Untuk memberikan ruang bagi FloatingActionButton
-          BottomNavItem(
-            icon: Icons.support_agent,
-            label: "Layanan",
-            page: PageLayanan(),
-          ),
-          BottomNavItem(
-            icon: Icons.chat,
-            label: "Obrolan",
-            page: PageObrolan(),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class BottomNavItem extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final Widget page;
-
-  const BottomNavItem({
-    required this.icon,
-    required this.label,
-    required this.page,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => page));
-      },
-
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, color: Colors.white, size: 30),
-          Text(
-            label,
-            style: const TextStyle(color: Colors.white, fontSize: 12),
-          ),
-        ],
-      ),
+      bottomNavigationBar: const CustomBottomNavBar(),
+      floatingActionButton: const CustomFloatingActionButton(),
     );
   }
 }

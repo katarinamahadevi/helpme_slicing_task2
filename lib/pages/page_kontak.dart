@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:helpme_slicing_task2/home_page.dart';
+import 'package:helpme_slicing_task2/widgets/appBar_kontak.dart';
+import 'package:helpme_slicing_task2/widgets/appBar_module_obrolan.dart';
 
 
 void main() {
@@ -78,40 +79,12 @@ class EmergencyContactsPage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(160),
-        child: AppBar(
-          backgroundColor: Colors.red,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
-            ),
-          ),
-          centerTitle: true,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.white, size: 30),
-            onPressed: () {Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomePage()),
-                );} ,
-          ),
-          flexibleSpace: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              SizedBox(height: 40),
-              Icon(Icons.perm_contact_calendar, color: Colors.white, size: 60),
-              SizedBox(height: 10),
-              Text(
-                "Kontak Darurat",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+        child: const CustomAppBarKontak(
+        icon: Icons.perm_contact_calendar,
+        title: "Kontak",
+        height: 250,
+      ),           
                 ),
-              ),
-            ],
-          ),
-        ),
-      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
         child: Column(

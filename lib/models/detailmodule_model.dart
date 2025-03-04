@@ -21,8 +21,10 @@ class DetailmoduleModel {
       required this.thumbnail,
       
       }
+      
   );
 }
+
   final List<DetailmoduleModel> modulesDetail= [
     DetailmoduleModel(
       title: "Pertolongan Pertama: Pingsan",

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:helpme_slicing_task2/home_page.dart';
+import 'package:helpme_slicing_task2/pages/home_page.dart';
 import 'page_register.dart'; //wajib kalo mau pindah2 page
 
 class LoginScreen extends StatelessWidget {
