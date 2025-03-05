@@ -9,7 +9,6 @@ class DetailmoduleModel {
   final String videoUrl;
   final String thumbnail;
 
-
   DetailmoduleModel(
     {
       required this.title, 
@@ -19,9 +18,8 @@ class DetailmoduleModel {
       required this.image,
       required this.videoUrl,      
       required this.thumbnail,
-      
+           
       }
-      
   );
 }
 

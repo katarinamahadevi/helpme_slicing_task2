@@ -26,7 +26,7 @@ class CustomAppBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded( // Membantu teks menyesuaikan ruang yang tersedia
+            Expanded( 
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -43,14 +43,14 @@ class CustomAppBar extends StatelessWidget {
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
-                      overflow: TextOverflow.ellipsis, // Potong teks jika terlalu panjang
+                      overflow: TextOverflow.ellipsis, // Potong teks jika overflow
                       maxLines: 1, // Pastikan hanya satu baris
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(width: 10), // Beri sedikit jarak agar tidak berhimpitan
+            const SizedBox(width: 10), // sedikit jarak biar tidak berhimpitan
             ClipRRect(
               borderRadius: BorderRadius.circular(50),
               child: Image.asset(

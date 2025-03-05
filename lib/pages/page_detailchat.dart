@@ -1,42 +1,97 @@
 import 'package:flutter/material.dart';
-import 'package:helpme_slicing_task2/pages/page_obrolan.dart';
+import 'package:helpme_slicing_task2/models/chat_model.dart';
 import 'package:helpme_slicing_task2/widgets/appBar_detailchat.dart';
 
-class PageDetailChat extends StatelessWidget {
+
+class PageDetailChat extends StatefulWidget {
   const PageDetailChat({super.key});
+
+  @override
+  _PageDetailChatState createState() => _PageDetailChatState();
+}
+
+class _PageDetailChatState extends State<PageDetailChat> {
+  List<ChatMessage> messages = [];
+  final TextEditingController _controller = TextEditingController(); //controller input chat
+
+  @override
+  void initState() {
+    super.initState();
+    _loadMessages();
+  }
+
+  void _loadMessages() async {
+    List<ChatMessage> loadedMessages = await ChatMessage.loadMessages();
+    setState(() {
+      messages = loadedMessages;
+    });
+  }
+
+  void _sendMessage(String text, bool isSender) { //nambah chat
+  if (text.isEmpty) return;
+
+  ChatMessage newMessage = ChatMessage(
+    text: text,
+    isSender: isSender, // Pake nilai dari checkbox
+    time: TimeOfDay.now().format(context),
+  );
+
+  setState(() {
+    messages.add(newMessage);
+  });
+
+  _controller.clear();
+  ChatMessage.saveMessages(messages);
+}
+
+
+
+  void _deleteMessage(int index) async { //hapus chat pake longpress
+    List<ChatMessage> updatedMessages = await ChatMessage.deleteMessage(index, messages);
+    setState(() {
+      messages = updatedMessages;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(160),
-        child: CustomAppBarDetailChat(
+      appBar: CustomAppBarDetailChat(
         icon: Icons.chat,
         title: "Rumah Sakit Premier",
-        height: 250,
-      ),           
-                ),
+        height: 175,
+      ),
       body: Column(
         children: [
           Expanded(
-            child: ListView(
+            child: ListView.builder(
               padding: const EdgeInsets.all(16),
-              children: const [
-                ChatBubble(text: "Lokasi dimana ya ?", isSender: true, time: "20.11"),
-                ChatBubble(text: "Didekat perempatan merr", isSender: false, time: "20.11"),
-                ChatBubble(text: "Saya kirim lokasi nya", isSender: true, time: "20.11"),
-                ChatBubble(text: "Baik.", isSender: true, time: "20.12"),
-              ],
+              itemCount: messages.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onLongPress: () => _deleteMessage(index), //ngehapus chat pake longpress
+                  child: ChatBubble(
+                    text: messages[index].text,
+                    isSender: messages[index].isSender,
+                    time: messages[index].time,
+                  ),
+                );
+              },
             ),
           ),
-          ChatInputField(),
+          ChatInputField(
+          controller: _controller,
+          onSend: (text, isSender) => _sendMessage(text, isSender), // Sesuaikan dengan 2 parameter
+        ),
+
         ],
       ),
     );
   }
 }
 
+// Widget untuk chat bubble
 class ChatBubble extends StatelessWidget {
   final String text;
   final bool isSender;
@@ -45,14 +100,14 @@ class ChatBubble extends StatelessWidget {
   const ChatBubble({super.key, required this.text, required this.isSender, required this.time});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { //chat penerima/pengirim???
     return Align(
       alignment: isSender ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
         margin: const EdgeInsets.only(bottom: 10),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         decoration: BoxDecoration(
-          color: Colors.red,
+          color: isSender ? Colors.red : Colors.grey[300],
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -60,12 +115,12 @@ class ChatBubble extends StatelessWidget {
           children: [
             Text(
               text,
-              style: const TextStyle(color: Colors.white, fontSize: 16),
+              style: TextStyle(color: isSender ? Colors.white : Colors.black, fontSize: 16),
             ),
             const SizedBox(height: 5),
             Text(
               time,
-              style: const TextStyle(color: Colors.white70, fontSize: 12),
+              style: TextStyle(color: isSender ? Colors.white70 : Colors.black54, fontSize: 12),
             ),
           ],
         ),
@@ -74,9 +129,20 @@ class ChatBubble extends StatelessWidget {
   }
 }
 
+// Widget untuk input chat
+class ChatInputField extends StatefulWidget {
+  final TextEditingController controller;
+  final Function(String, bool) onSend; // Terima 2 parameter
 
-class ChatInputField extends StatelessWidget {
-  const ChatInputField({super.key});
+  const ChatInputField({super.key, required this.controller, required this.onSend});
+
+  @override
+  _ChatInputFieldState createState() => _ChatInputFieldState();
+}
+
+
+class _ChatInputFieldState extends State<ChatInputField> {
+  bool _isChecked = false; //tanda pengirim atau penerima?
 
   @override
   Widget build(BuildContext context) {
@@ -87,18 +153,21 @@ class ChatInputField extends StatelessWidget {
       ),
       child: Row(
         children: [
-          IconButton(
-            icon: const Icon(Icons.location_on, color: Colors.white, size: 30),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.image, color: Colors.white, size: 30),
-            onPressed: () {},
+          Checkbox( 
+            value: _isChecked,
+            onChanged: (bool? value) {
+              setState(() {
+                _isChecked = value!;
+              });
+            },
+            activeColor: Colors.white,
+            checkColor: Colors.red,
           ),
           Expanded(
             child: TextField(
+              controller: widget.controller,
               decoration: InputDecoration(
-                hintText: "Tulis pesan...",
+                hintText: "Ketik pesan...",
                 hintStyle: const TextStyle(color: Colors.white70),
                 filled: true,
                 fillColor: Colors.white.withOpacity(0.3),
@@ -112,7 +181,7 @@ class ChatInputField extends StatelessWidget {
           ),
           IconButton(
             icon: const Icon(Icons.send, color: Colors.white, size: 30),
-            onPressed: () {},
+            onPressed: () => widget.onSend(widget.controller.text, _isChecked),
           ),
         ],
       ),

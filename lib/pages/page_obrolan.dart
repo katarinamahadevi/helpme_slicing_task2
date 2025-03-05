@@ -25,7 +25,7 @@ class PageObrolan extends StatelessWidget {
       ),           
                 ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 8),
         child: ListView.builder(
           itemCount: chatList.length,
           itemBuilder: (context, index) {

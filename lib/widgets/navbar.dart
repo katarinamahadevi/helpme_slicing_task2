@@ -3,7 +3,7 @@ import 'package:helpme_slicing_task2/pages/page_kontak.dart';
 import 'package:helpme_slicing_task2/pages/page_layanan.dart';
 import 'package:helpme_slicing_task2/pages/page_module.dart';
 import 'package:helpme_slicing_task2/pages/page_obrolan.dart';
-import 'package:helpme_slicing_task2/pages/home_page.dart';
+import 'package:helpme_slicing_task2/pages/page_home.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({super.key});
