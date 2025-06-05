@@ -62,7 +62,6 @@ class PageRegister extends StatelessWidget {
             const SizedBox(height: 50),
             ElevatedButton(
               onPressed: () {
-                // Navigasi ke HomePage setelah tombol "Daftar" ditekan
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => const HomePage()),

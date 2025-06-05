@@ -75,7 +75,6 @@ class _ModulePageState extends State<ModulePage> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            // Cari modul detail berdasarkan title yang sama
                             var detailModule = modulesDetail.firstWhere(
                               (detail) => detail.title == module.title,
                               orElse: () => DetailmoduleModel(

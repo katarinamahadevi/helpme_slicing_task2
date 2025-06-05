@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:helpme_slicing_task2/widgets/navbar.dart';
-import 'package:helpme_slicing_task2/widgets/appBar_home.dart'; // Import AppBar baru
+import 'package:helpme_slicing_task2/widgets/appBar_home.dart'; 
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

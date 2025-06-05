@@ -16,7 +16,7 @@ class OnboardingScreen extends StatelessWidget {
             child: Column(
               children: [
                 Image.asset(
-                  'assets/logo_onboarding.png', //Logo
+                  'assets/logo_onboarding.png', 
                   width: 150,
                 ),
                 const SizedBox(height: 20),
@@ -47,14 +47,14 @@ class OnboardingScreen extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 120), // Jarak fleksibel antara teks dan tombol
+          const SizedBox(height: 120), 
           Padding(
             padding: const EdgeInsets.only(bottom: 120),
-            child: ElevatedButton( //button mulai
+            child: ElevatedButton( 
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()), //button pindah ke halaman login
+                  MaterialPageRoute(builder: (context) => const LoginScreen()), 
                 );
               },
               style: ElevatedButton.styleFrom(

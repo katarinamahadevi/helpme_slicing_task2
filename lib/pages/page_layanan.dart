@@ -11,7 +11,6 @@ void main() {
 class PageLayanan extends StatelessWidget {
   const PageLayanan({super.key});
 
-  // Daftar layanan darurat sebagai konstanta statis
   static const List<Map<String, String>> emergencyServices = [
     {"name": "Ambulans", "number": "118 atau 119"},
     {"name": "Pemadam Kebakaran", "number": "113"},
@@ -66,7 +65,7 @@ class PageLayanan extends StatelessWidget {
                   onTap: () => print("Tombol darurat ditekan!"),
                   child: Container(
                     width:
-                        80, // Lebih kecil dari background putih agar terlihat
+                        80, 
                     height: 80,
                     decoration: BoxDecoration(
                       color: Colors.red,
@@ -101,7 +100,7 @@ class PageLayanan extends StatelessWidget {
                 left: 30,
                 right: 30,
                 bottom: 40,
-              ), // Tambahkan bottom padding
+              ), 
               itemCount: emergencyServices.length,
               itemBuilder: (context, index) {
                 final service = emergencyServices[index];
@@ -168,6 +167,6 @@ class EmergencyServiceList extends StatelessWidget {
   }
 
   String sanitizedNumber(String number) {
-    return number.split(" atau ")[0]; // Ambil angka pertama sebelum "atau"
+    return number.split(" atau ")[0]; 
   }
 }

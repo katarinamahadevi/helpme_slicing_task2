@@ -9,7 +9,7 @@ class ChatMessage {
   ChatMessage({required this.text, required this.isSender, required this.time});
 
 
-  Map<String, dynamic> toJson() { //mengubah format json
+  Map<String, dynamic> toJson() { 
     return {
       'text': text,
       'isSender': isSender,
@@ -26,14 +26,12 @@ class ChatMessage {
     );
   }
 
-  // Simpan pesan ke SharedPreferences
   static Future<void> saveMessages(List<ChatMessage> messages) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String> encodedMessages = messages.map((msg) => jsonEncode(msg.toJson())).toList();
     await prefs.setStringList('chat_messages', encodedMessages);
   }
 
-  // Ambil pesan dari SharedPreferences
   static Future<List<ChatMessage>> loadMessages() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String>? encodedMessages = prefs.getStringList('chat_messages');
@@ -45,7 +43,6 @@ class ChatMessage {
     }
   }
 
-  // Tambahkan fungsi hapus pesan berdasarkan index
   static Future<List<ChatMessage>> deleteMessage(int index, List<ChatMessage> messages) async {
     messages.removeAt(index);
     await saveMessages(messages);

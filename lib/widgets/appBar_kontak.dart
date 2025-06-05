@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:helpme_slicing_task2/pages/page_home.dart';
-import 'package:flutter/material.dart';
 
 
 class CustomAppBarKontak extends StatelessWidget implements PreferredSizeWidget {
   final IconData icon;
   final String title;
-  final double height; // Menambahkan parameter tinggi agar fleksibel
+  final double height; 
 
   const CustomAppBarKontak({
     super.key,
     required this.icon,
     required this.title,
-    this.height = 250, // Default tinggi jika tidak diatur
+    this.height = 250, 
   });
 
   @override
@@ -20,7 +19,7 @@ class CustomAppBarKontak extends StatelessWidget implements PreferredSizeWidget 
     return PreferredSize(
       preferredSize: Size.fromHeight(height),
       child: Container(
-        height: 250, // Pastikan tinggi sesuai dengan preferredSize
+        height: 250, 
         decoration: const BoxDecoration(
           color: Colors.red,
           borderRadius: BorderRadius.only(
@@ -28,9 +27,9 @@ class CustomAppBarKontak extends StatelessWidget implements PreferredSizeWidget 
             bottomRight: Radius.circular(20),
           ),
         ),
-        child: SafeArea( // Mencegah konten tertutup status bar
+        child: SafeArea( 
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4), // Padding agar tidak mepet
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4), 
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -49,7 +48,7 @@ class CustomAppBarKontak extends StatelessWidget implements PreferredSizeWidget 
                     const Spacer(),
                   ],
                 ),
-                const SizedBox(height: 5), // Jarak agar lebih rapi
+                const SizedBox(height: 5), 
                 Icon(icon, color: Colors.white, size: 50),
                 const SizedBox(height: 5),
                 Text(

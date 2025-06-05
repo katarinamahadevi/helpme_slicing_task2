@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:helpme_slicing_task2/models/chat_model.dart';
 import 'package:helpme_slicing_task2/widgets/appBar_detailchat.dart';
 
-
 class PageDetailChat extends StatefulWidget {
   const PageDetailChat({super.key});
 
@@ -12,7 +11,8 @@ class PageDetailChat extends StatefulWidget {
 
 class _PageDetailChatState extends State<PageDetailChat> {
   List<ChatMessage> messages = [];
-  final TextEditingController _controller = TextEditingController(); //controller input chat
+  final TextEditingController _controller =
+      TextEditingController(); 
 
   @override
   void initState() {
@@ -27,27 +27,28 @@ class _PageDetailChatState extends State<PageDetailChat> {
     });
   }
 
-  void _sendMessage(String text, bool isSender) { //nambah chat
-  if (text.isEmpty) return;
+  void _sendMessage(String text, bool isSender) {
+    if (text.isEmpty) return;
 
-  ChatMessage newMessage = ChatMessage(
-    text: text,
-    isSender: isSender, // Pake nilai dari checkbox
-    time: TimeOfDay.now().format(context),
-  );
+    ChatMessage newMessage = ChatMessage(
+      text: text,
+      isSender: isSender, 
+      time: TimeOfDay.now().format(context),
+    );
 
-  setState(() {
-    messages.add(newMessage);
-  });
+    setState(() {
+      messages.add(newMessage);
+    });
 
-  _controller.clear();
-  ChatMessage.saveMessages(messages);
-}
+    _controller.clear();
+    ChatMessage.saveMessages(messages);
+  }
 
-
-
-  void _deleteMessage(int index) async { //hapus chat pake longpress
-    List<ChatMessage> updatedMessages = await ChatMessage.deleteMessage(index, messages);
+  void _deleteMessage(int index) async {
+    List<ChatMessage> updatedMessages = await ChatMessage.deleteMessage(
+      index,
+      messages,
+    );
     setState(() {
       messages = updatedMessages;
     });
@@ -60,7 +61,7 @@ class _PageDetailChatState extends State<PageDetailChat> {
       appBar: CustomAppBarDetailChat(
         icon: Icons.chat,
         title: "Rumah Sakit Premier",
-        height: 175,
+        height: 200,
       ),
       body: Column(
         children: [
@@ -70,7 +71,9 @@ class _PageDetailChatState extends State<PageDetailChat> {
               itemCount: messages.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
-                  onLongPress: () => _deleteMessage(index), //ngehapus chat pake longpress
+                  onLongPress:
+                      () =>
+                          _deleteMessage(index), 
                   child: ChatBubble(
                     text: messages[index].text,
                     isSender: messages[index].isSender,
@@ -81,26 +84,33 @@ class _PageDetailChatState extends State<PageDetailChat> {
             ),
           ),
           ChatInputField(
-          controller: _controller,
-          onSend: (text, isSender) => _sendMessage(text, isSender), // Sesuaikan dengan 2 parameter
-        ),
-
+            controller: _controller,
+            onSend:
+                (text, isSender) => _sendMessage(
+                  text,
+                  isSender,
+                ), 
+          ),
         ],
       ),
     );
   }
 }
 
-// Widget untuk chat bubble
 class ChatBubble extends StatelessWidget {
   final String text;
   final bool isSender;
   final String time;
 
-  const ChatBubble({super.key, required this.text, required this.isSender, required this.time});
+  const ChatBubble({
+    super.key,
+    required this.text,
+    required this.isSender,
+    required this.time,
+  });
 
   @override
-  Widget build(BuildContext context) { //chat penerima/pengirim???
+  Widget build(BuildContext context) {
     return Align(
       alignment: isSender ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
@@ -115,12 +125,18 @@ class ChatBubble extends StatelessWidget {
           children: [
             Text(
               text,
-              style: TextStyle(color: isSender ? Colors.white : Colors.black, fontSize: 16),
+              style: TextStyle(
+                color: isSender ? Colors.white : Colors.black,
+                fontSize: 16,
+              ),
             ),
             const SizedBox(height: 5),
             Text(
               time,
-              style: TextStyle(color: isSender ? Colors.white70 : Colors.black54, fontSize: 12),
+              style: TextStyle(
+                color: isSender ? Colors.white70 : Colors.black54,
+                fontSize: 12,
+              ),
             ),
           ],
         ),
@@ -129,31 +145,32 @@ class ChatBubble extends StatelessWidget {
   }
 }
 
-// Widget untuk input chat
 class ChatInputField extends StatefulWidget {
   final TextEditingController controller;
-  final Function(String, bool) onSend; // Terima 2 parameter
+  final Function(String, bool) onSend; 
 
-  const ChatInputField({super.key, required this.controller, required this.onSend});
+  const ChatInputField({
+    super.key,
+    required this.controller,
+    required this.onSend,
+  });
 
   @override
   _ChatInputFieldState createState() => _ChatInputFieldState();
 }
 
-
 class _ChatInputFieldState extends State<ChatInputField> {
-  bool _isChecked = false; //tanda pengirim atau penerima?
+  bool _isChecked = false; 
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      decoration: const BoxDecoration(
-        color: Colors.red,
-      ),
+      decoration: const BoxDecoration(color: Colors.red),
       child: Row(
         children: [
-          Checkbox( 
+          Checkbox(
+            side: BorderSide(color: Colors.white, style: BorderStyle.solid),
             value: _isChecked,
             onChanged: (bool? value) {
               setState(() {
@@ -171,7 +188,10 @@ class _ChatInputFieldState extends State<ChatInputField> {
                 hintStyle: const TextStyle(color: Colors.white70),
                 filled: true,
                 fillColor: Colors.white.withOpacity(0.3),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
                   borderSide: BorderSide.none,

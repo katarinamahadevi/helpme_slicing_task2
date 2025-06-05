@@ -35,7 +35,7 @@ class CustomAppBar extends StatelessWidget {
                     style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                   const SizedBox(height: 8),
-                  Flexible( // Menghindari overflow jika teks terlalu panjang
+                  Flexible( 
                     child: Text(
                       userName,
                       style: const TextStyle(
@@ -43,14 +43,14 @@ class CustomAppBar extends StatelessWidget {
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
-                      overflow: TextOverflow.ellipsis, // Potong teks jika overflow
-                      maxLines: 1, // Pastikan hanya satu baris
+                      overflow: TextOverflow.ellipsis, 
+                      maxLines: 1, 
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(width: 10), // sedikit jarak biar tidak berhimpitan
+            const SizedBox(width: 10), 
             ClipRRect(
               borderRadius: BorderRadius.circular(50),
               child: Image.asset(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:helpme_slicing_task2/models/detailmodule_model.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -18,7 +17,6 @@ class _DetailModuleScreenState extends State<DetailModuleScreen> {
    @override
   void initState() {
     super.initState();
-    // Extract video ID from URL
     final videoId = YoutubePlayer.convertUrlToId(widget.module.videoUrl);
     _controller = YoutubePlayerController(
       initialVideoId: videoId!,
@@ -42,10 +40,8 @@ class _DetailModuleScreenState extends State<DetailModuleScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // stack untuk gambar utama + tombol back
             Stack(
               children: [
-                // gambar utama sebagai header penuh
                 ClipRRect(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(16),
@@ -58,7 +54,6 @@ class _DetailModuleScreenState extends State<DetailModuleScreen> {
                     fit: BoxFit.cover,
                   ),
                 ),
-                // Button back
                 Positioned(
                   top: 40,
                   left: 16,
@@ -79,14 +74,13 @@ class _DetailModuleScreenState extends State<DetailModuleScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Judul container merah
                   Container(
                     padding: EdgeInsets.fromLTRB(
                       40,
                       10,
                       40,
                       10,
-                    ), //mengatur container judul
+                    ), 
                     decoration: BoxDecoration(
                       color: Colors.red,
                       borderRadius: BorderRadius.circular(12),
@@ -104,7 +98,7 @@ class _DetailModuleScreenState extends State<DetailModuleScreen> {
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 10.0,
-                    ), // Mengatur padding kanan dan kiri
+                    ), 
                     child: Text(
                       widget.module.description,
                       style: TextStyle(fontSize: 14),
@@ -118,21 +112,20 @@ class _DetailModuleScreenState extends State<DetailModuleScreen> {
                   ),
                   SizedBox(height: 10),
 
-                  // Menggunakan Wrap untuk membuat dua kolom langkah-langkah
                   Wrap(
-                    spacing: 16, // Jarak antara item dalam baris
-                    runSpacing: 8, // Jarak antar baris
+                    spacing: 16, 
+                    runSpacing: 8, 
                     children: List.generate(
                       widget.module.steps.length,
                       (index) => SizedBox(
                         width:
                             MediaQuery.of(context).size.width *
-                            0.35, // Lebar tiap langkah
+                            0.35, 
                         child: Row(
                           children: [
                             CircleAvatar(
                               backgroundColor: Colors.red,
-                              radius: 14, // Ukuran lingkaran
+                              radius: 14, 
                               child: Text(
                                 "${index + 1}",
                                 style: TextStyle(
@@ -169,7 +162,7 @@ class _DetailModuleScreenState extends State<DetailModuleScreen> {
                     builder: (context, player) {
                       return Column(
                         children: [
-                          player, // Video player
+                          player, 
                         ],
                       );
                     },

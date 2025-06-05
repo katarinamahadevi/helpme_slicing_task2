@@ -3,7 +3,6 @@ import 'package:helpme_slicing_task2/pages/page_detailchat.dart';
 import 'package:helpme_slicing_task2/widgets/appBar_module_obrolan.dart';
 import 'package:helpme_slicing_task2/widgets/navbar.dart';
 
-
 class PageObrolan extends StatelessWidget {
   const PageObrolan({super.key});
 
@@ -19,11 +18,8 @@ class PageObrolan extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(160),
-        child: const CustomAppBar(
-        icon: Icons.chat,
-        title: "Obrolan",
-      ),           
-                ),
+        child: const CustomAppBar(icon: Icons.chat, title: "Obrolan"),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 8),
         child: ListView.builder(
@@ -33,8 +29,9 @@ class PageObrolan extends StatelessWidget {
           },
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(), // Navbar home
-      floatingActionButton: const CustomFloatingActionButton(), // Floating action button
+      bottomNavigationBar: const CustomBottomNavBar(), 
+      floatingActionButton:
+          const CustomFloatingActionButton(), 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
@@ -48,7 +45,7 @@ class ChatItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 12),
+      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.red,
@@ -57,7 +54,7 @@ class ChatItem extends StatelessWidget {
         child: ListTile(
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 16,
-            vertical: 8,
+            vertical: 4,
           ),
           title: Text(
             name,
@@ -72,7 +69,7 @@ class ChatItem extends StatelessWidget {
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (context) => const PageDetailChat()),
-              (route) => false, 
+              (route) => false,
             );
           },
         ),

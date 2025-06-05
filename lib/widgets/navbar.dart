@@ -11,8 +11,8 @@ class CustomBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80, // Tinggi navbar
-      color: Colors.red, // Warna latar belakang navbar
+      height: 80, 
+      color: Colors.red, 
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -63,7 +63,6 @@ class CustomFloatingActionButton extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children: [
-        // Background merah agar menyatu dengan navbar
         Positioned(
           bottom: 0,
           child: Container(
@@ -75,7 +74,6 @@ class CustomFloatingActionButton extends StatelessWidget {
             ),
           ),
         ),
-        // FAB utama
         SizedBox(
           width: 70,
           height: 70,
